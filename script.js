@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Список с именами файлов изображений
     const imageNames = [
-        "image1.jpg",
-        "image2.jpg",
-        "image3.jpg"
+        "image1.jpeg",
+        "image2.jpeg",
+        "image3.jpeg",
+        "image4.jpeg",
+        "image5.jpeg"
     ];
 
     // Функция для получения случайного имени файла изображения
