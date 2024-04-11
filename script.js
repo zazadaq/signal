@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Функция для формирования URL-адреса случайного изображения
     function getRandomImageURL() {
         const imageName = getRandomImageName();
-        return `images/${imageName}`;
+        return `image/${imageName}`;
     }
 
     // Функция для получения случайной картинки
