@@ -1,5 +1,16 @@
 .container {
     text-align: center;
+    position: relative; /* Чтобы контейнер мог выступать в роли относительного для позиционирования оверлея */
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный серый фон */
+    display: none; /* Изначально скрыт */
 }
 
 button {
