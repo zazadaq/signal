@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const randomImageElement = document.getElementById("randomImage");
+    const initialImageElement = document.getElementById("initialImage");
+    const intermediateImageElement = document.getElementById("intermediateImage");
     const getRandomImageButton = document.getElementById("getRandomImage");
-    const overlay = document.getElementById("overlay");
+    const loadingAnimationElement = document.getElementById("loadingAnimation");
 
     const imageNames = [
         "image1.jpg",
@@ -16,24 +17,42 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getRandomImageURL() {
         const imageName = getRandomImageName();
-        return `images/${imageName}`;
+        return `image/${imageName}`;
     }
 
-    function getRandomImage() {
-        // Показываем серый фон
-        overlay.style.display = "block";
+    function showLoadingAnimation() {
+        loadingAnimationElement.classList.remove("hidden");
+    }
 
-        // Запускаем таймер на 3 секунды
+    function hideLoadingAnimation() {
+        loadingAnimationElement.classList.add("hidden");
+    }
+
+    function countdown(callback) {
+        showLoadingAnimation();
+
         setTimeout(function() {
-            const randomImageURL = getRandomImageURL();
-            randomImageElement.src = randomImageURL;
+            hideLoadingAnimation();
+            callback();
+        }, 3300);
+    }
 
-            // Скрываем серый фон после смены изображения
-            overlay.style.display = "none";
-        }, 3000);
+    function showIntermediateImageWithCountdown() {
+        initialImageElement.classList.add("hidden");
+        intermediateImageElement.classList.remove("hidden");
+        getRandomImageButton.disabled = true; // Блокируем кнопку
+
+        countdown(function() {
+            const randomImageURL = getRandomImageURL();
+            initialImageElement.src = randomImageURL;
+
+            initialImageElement.classList.remove("hidden");
+            intermediateImageElement.classList.add("hidden");
+            getRandomImageButton.disabled = false; // Разблокируем кнопку
+        });
     }
 
     getRandomImageButton.addEventListener("click", function() {
-        getRandomImage();
+        showIntermediateImageWithCountdown();
     });
 });
